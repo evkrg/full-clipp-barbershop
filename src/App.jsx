@@ -1,54 +1,14 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Scissors, Calendar, MapPin, Phone, Clock, Star, ExternalLink, CheckCircle } from "lucide-react";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import Cal from "@calcom/embed-react";
+import { useCalcomBooking } from "./hooks/useCalcomBooking";
+import { tshirtsData } from "./data.jsx";
 
 export default function Barbershop() {
-  const [isBooked, setIsBooked] = useState(false);
-
-  useEffect(() => {
-    let cleanup = null;
-    getCalApi().then((cal) => {
-      const onBooked = (payload) => {
-        try {
-          const status = payload?.status || payload?.detail?.status;
-          if (!status || status === "success") {
-            setIsBooked(true);
-          }
-        } catch {
-          // If payload shape is unexpected but event fired, assume success
-          setIsBooked(true);
-        }
-      };
-      const register = () => {
-        try {
-          // Support both legacy and v2 success events
-          cal("on", { action: "bookingSuccessfulV2", callback: onBooked });
-          cal("on", { action: "bookingSuccessful", callback: onBooked });
-          // eslint-disable-next-line no-empty
-        } catch { }
-      };
-      try {
-        cal("on", { action: "linkReady", callback: register });
-        // eslint-disable-next-line no-empty
-      } catch { }
-      register();
-      cleanup = () => {
-        try {
-          cal("off", { action: "bookingSuccessfulV2", callback: onBooked });
-          cal("off", { action: "bookingSuccessful", callback: onBooked });
-          cal("off", { action: "linkReady", callback: register });
-          // eslint-disable-next-line no-empty
-        } catch { }
-      };
-    });
-    return () => {
-      if (cleanup) cleanup();
-    };
-  }, []);
+  const isBooked = useCalcomBooking();
 
   return (
-    <div className="min-h-screen bg-neutral-50 text-neutral-900 font-sans">
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 font-sans overflow-x-hidden">
       {/* Nav */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b">
         <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -109,7 +69,7 @@ export default function Barbershop() {
               <address className="mt-2 flex items-center gap-2 not-italic">
                 <MapPin className="h-4 w-4" aria-hidden="true" />
                 <a
-                  href="https://maps.app.goo.gl/URxsQCG4SA6kig628"
+                  href="https://www.google.com/maps/place/Full+Clipp+Barber+Shop/@37.9957823,23.7311912,17z/data=!4m7!3m6!1s0x14a1a33d9709d407:0x439657f7dc4f59ef!4b1!8m2!3d37.9957781!4d23.7337715!16s%2Fg%2F11md6jlk16?entry=ttu&g_ep=EgoyMDI1MDkwOC4wIKXMDSoASAFQAw%3D%3D"
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Open in Google Maps"
@@ -121,24 +81,16 @@ export default function Barbershop() {
             </div>
 
             <div className="mt-4 flex flex-col gap-2 text-sm text-neutral-600">
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex items-center gap-2 flex-nowrap">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} className="h-5 w-5 text-amber-500 fill-current" />
                 ))}
                 <span className="ml-1 text-neutral-800 font-medium">5.0</span>
                 <a
-                  href="https://www.google.com/maps/place/?q=place_id:ChIJB9QJlz2joRQR71lP3PdXlkM"
+                  href="https://www.google.com/search?q=Full+Clipp+Barbershop+Athens+reviews"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline"
-                >
-                  (reviews)
-                </a>
-                <a
-                  href="https://search.google.com/local/writereview?placeid=ChIJB9QJlz2joRQR71lP3PdXlkM"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-neutral-300 px-3 py-2 text-sm text-neutral-700 hover:bg-neutral-100 transition sm:ml-2"
+                  className="flex items-center gap-1 text-blue-600 hover:underline"
                 >
                   Rate us on Google
                   <ExternalLink className="h-4 w-4" aria-hidden="true" />
@@ -202,25 +154,21 @@ export default function Barbershop() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { title: "T-shirt 1", price: "€15", desc: "T-shirt" },
-              { title: "T-shirt 2", price: "€15", desc: "T-shirt" },
-            ].map((s) => (
-              <div
-                key={s.title}
-                className="group relative rounded-3xl border bg-white p-6 shadow-sm transition hover:shadow-lg hover:-translate-y-0.5"
-              >
-                <div className="absolute right-4 top-4 select-none rounded-full border px-3 py-1 text-sm font-semibold bg-white/70 backdrop-blur">
-                  {s.price}
+            {tshirtsData.map((shirt) => (
+              <div key={shirt.id} className="group relative ..." >
+                {/* You can add your image here! */}
+                <div className="aspect-square w-full overflow-hidden rounded-2xl bg-neutral-100 mb-4">
+                  <img
+                    src={shirt.imageUrl}
+                    alt={shirt.title}
+                    className="h-full w-full object-cover object-center transition-transform group-hover:scale-105"
+                  />
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-neutral-100 border">
-                    <Scissors className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-lg font-semibold">{s.title}</h3>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-neutral-600">{s.desc}</p>
-                <div className="pointer-events-none absolute inset-0 rounded-3xl ring-0 ring-black/0 transition group-hover:ring-1 group-hover:ring-black/10" />
+
+                {/* ... rest of your card content ... */}
+                <div className="absolute right-4 top-4 ...">{shirt.price}</div>
+                <h3 className="text-lg font-semibold">{shirt.title}</h3>
+                <p className="mt-2 text-sm ...">{shirt.desc}</p>
               </div>
             ))}
           </div>
@@ -234,8 +182,26 @@ export default function Barbershop() {
             <h2 className="text-3xl font-bold">Location & Hours</h2>
             <p className="mt-2 text-neutral-600">Drosopoulou 6, 11257 Athens, Greece</p>
             <div className="mt-4 grid gap-2 text-sm text-neutral-600">
-              <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" aria-hidden="true" /> +30 210 822 8684</span>
-              <span className="inline-flex items-center gap-2"><MapPin className="h-4 w-4" aria-hidden="true" /> <a className="underline underline-offset-4" href="https://maps.app.goo.gl/URxsQCG4SA6kig628" target="_blank" rel="noreferrer">Get directions</a></span>
+              <span className="inline-flex items-center gap-2">
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                <a
+                  href="tel:+302108228684"
+                  className="underline underline-offset-4 hover:opacity-80"
+                >
+                  +30 210 822 8684
+                </a>
+              </span>
+              <address className="inline-flex items-center gap-2 not-italic">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                <a
+                  className="underline underline-offset-4 hover:opacity-80"
+                  href="https://www.google.com/maps/place/Full+Clipp+Barber+Shop/@37.9957823,23.7311912,17z/data=!4m7!3m6!1s0x14a1a33d9709d407:0x439657f7dc4f59ef!4b1!8m2!3d37.9957781!4d23.7337715!16s%2Fg%2F11md6jlk16?entry=ttu&g_ep=EgoyMDI1MDkwOC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Get directions
+                </a>
+              </address>
               <span className="inline-flex items-center gap-2">
                 <Clock className="h-4 w-4" aria-hidden="true" />
                 <span>Tue–Fri 11:00–20:30 · Sat 11:00–18:00</span>
@@ -267,7 +233,7 @@ export default function Barbershop() {
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-neutral-500 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} Full Clipp Barbershop</p>
-          <a href="#booking" className="inline-flex items-center gap-2"><Calendar className="h-4 w-4" aria-hidden="true" /> Book now</a>
+          <a href="#booking" className="inline-flex items-center gap-2"><Calendar className="h-4 w-4" aria-hidden="true" />Book now</a>
         </div>
       </footer>
     </div>
