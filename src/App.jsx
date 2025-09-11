@@ -111,7 +111,7 @@ export default function Barbershop() {
           >
             <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
               <img
-                src="/fullclip_logo.webp"
+                src="/fullclip-logo.webp"
                 alt="Full Clipp Barbershop"
                 className="h-full w-full object-cover"
                 fetchPriority="high"
