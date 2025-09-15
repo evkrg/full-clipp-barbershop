@@ -1,32 +1,79 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Scissors, Calendar, MapPin, Phone, Clock, Star, ExternalLink, CheckCircle } from "lucide-react";
+import { Scissors, Calendar, MapPin, Phone, Clock, Star, ExternalLink, CheckCircle, Menu, X } from "lucide-react";
 import Cal from "@calcom/embed-react";
 import { useCalcomBooking } from "./hooks/useCalcomBooking";
 import { tshirtsData } from "./data.jsx";
 
 export default function Barbershop() {
+  const bookNowButtonClasses = "bg-black text-white rounded-2xl px-5 py-2 hover:bg-neutral-800 transition";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isBooked = useCalcomBooking();
+  const navLinks = [
+    { href: "#tshirts", label: "T-shirts" },
+    { href: "#location", label: "Visit Us" },
+  ];
 
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900 font-sans overflow-x-hidden">
       {/* Nav */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b">
-        <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <a href="#home" aria-label="Home" className="flex items-center gap-2 font-semibold text-lg">
+      <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+        <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          {/* Logo */}
+          <a href="#home" aria-label="Home" className="flex items-center gap-2 text-lg font-semibold">
             <Scissors className="h-6 w-6" />
             Full Clipp Barbershop
           </a>
-          <div className="hidden sm:flex items-center gap-6 text-sm">
-            <a href="#booking" className="hover:opacity-70">Book</a>
-            <a href="#tshirts" className="hover:opacity-70">T-shirts</a>
-            <a href="#location" className="hover:opacity-70">Location</a>
-          </div>
-          <a
-            href="#booking"
-            className="sm:inline-block hidden bg-black text-white rounded-2xl px-5 py-2 hover:bg-neutral-800 transition"
-          >
+
+          {/* Desktop Navigation */}
+          <ul className="hidden items-center gap-6 text-sm sm:flex">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a href={link.href} className="hover:opacity-70">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="#booking" className={`hidden sm:inline-block ${bookNowButtonClasses}`}>
             Book now
           </a>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="inline-flex items-center justify-center rounded-md border border-neutral-300 p-2 text-neutral-700 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-black/20 sm:hidden"
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+          >
+            {isMenuOpen ? (
+              <X className="h-5 w-5" aria-hidden="true" />
+            ) : (
+              <Menu className="h-5 w-5" aria-hidden="true" />
+            )}
+          </button>
+
+          {/* Mobile Menu Panel */}
+          {isMenuOpen && (
+            <div id="mobile-menu" className="absolute inset-x-0 top-full border-b bg-white shadow-md sm:hidden">
+              <ul className="grid gap-4 px-4 py-3 text-sm">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="block hover:opacity-70" onClick={() => setIsMenuOpen(false)}>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a href="#booking" className={`inline-block w-full text-center ${bookNowButtonClasses}`} onClick={() => setIsMenuOpen(false)}>
+                    Book now
+                  </a>
+                </li>
+              </ul>
+            </div>
+          )}
         </nav>
       </header>
 
@@ -179,7 +226,7 @@ export default function Barbershop() {
       <section id="location" className="bg-white border-t">
         <div className="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-2 gap-8 items-start">
           <div>
-            <h2 className="text-3xl font-bold">Location & Hours</h2>
+            <h2 className="text-3xl font-bold">Visit Us</h2>
             <p className="mt-2 text-neutral-600">Drosopoulou 6, 11257 Athens, Greece</p>
             <div className="mt-4 grid gap-2 text-sm text-neutral-600">
               <span className="inline-flex items-center gap-2">
