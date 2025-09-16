@@ -1,0 +1,64 @@
+// src/sections/VisitUsSection.jsx
+import React from 'react';
+import { MapPin, Clock, Phone, Instagram, CheckCircle } from 'lucide-react';
+
+// A small helper component to keep the info lines consistent and clean.
+const InfoLine = ({ icon, children }) => (
+    <div className="flex items-center gap-3 text-slate-700">
+        {React.createElement(icon, { className: "h-5 w-5 flex-shrink-0 text-slate-500" })}
+        <span className="text-base">{children}</span>
+    </div>
+);
+
+export default function VisitUsSection() {
+    return (
+        <section id="visit-us" className="bg-white border-t border-slate-200">
+            <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 grid md:grid-cols-2 gap-12 items-start">
+                <div className="space-y-8">
+                    <div>
+                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Come Visit Us</h2>
+                        <p className="mt-3 text-lg text-slate-600">Walk-ins are always welcome.</p>
+                    </div>
+                    <div className="space-y-4">
+                        <InfoLine icon={MapPin}>
+                            <a href="#" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                                Drosopoulou 6, 11257 Athens, Greece
+                            </a>
+                        </InfoLine>
+                        <InfoLine icon={Clock}>
+                            Tue–Fri 11:00–20:30 · Sat 11:00–18:00
+                        </InfoLine>
+                        <InfoLine icon={Phone}>
+                            <a href="tel:+302108228684" className="hover:text-slate-900 underline underline-offset-4">
+                                +30 210 822 8684
+                            </a>
+                        </InfoLine>
+                        <InfoLine icon={Instagram}>
+                            <a href="#" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                                @fullclippbarbershop
+                            </a>
+                        </InfoLine>
+                    </div>
+                </div>
+
+                <div className="rounded-xl border border-slate-200 p-8 bg-slate-50 shadow-sm">
+                    <h3 className="text-lg font-semibold text-slate-900">Why Choose Full Clipp?</h3>
+                    <ul className="mt-5 grid gap-4 text-base text-slate-700">
+                        <li className="flex items-start gap-3">
+                            <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
+                            <span>Experienced barbers with a passion for precision and detail.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
+                            <span>We use only premium products and maintain spotless, hygienic tools.</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
+                            <span>A friendly, relaxing atmosphere where you can unwind.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    );
+}

@@ -1,46 +1,68 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getCalApi } from "@calcom/embed-react";
 
 export function useCalcomBooking() {
     const [isBooked, setIsBooked] = useState(false);
+    const [bookingData, setBookingData] = useState(null);
+    const firedRef = useRef(false); // prevents duplicate handling
 
     useEffect(() => {
-        let cleanup = null;
-        getCalApi().then((cal) => {
-            const onBooked = () => {
+        let cleanup = () => { };
+        let calRef = null;
+
+        (async () => {
+            calRef = await getCalApi();
+
+            const onBooked = (e) => {
+                if (firedRef.current) return;
+                firedRef.current = true;
+
+                const raw = e?.detail?.data || {};
+                console.log("[cal] bookingSuccessful payload:", raw);
+
+                const data = extractBookingFields(raw);
                 setIsBooked(true);
+                setBookingData(data);
             };
 
             const register = () => {
                 try {
-                    cal("on", { action: "bookingSuccessful", callback: onBooked });
-                } catch (e) {
-                    console.error("Failed to register Cal.com event:", e);
+                    calRef("on", { action: "bookingSuccessful", callback: onBooked });
+                } catch (err) {
+                    console.error("[cal] failed to register bookingSuccessful:", err);
                 }
             };
 
             try {
-                cal("on", { action: "linkReady", callback: register });
-            } catch (e) {
-                console.error("Failed to register linkReady event:", e);
+                calRef("on", { action: "linkReady", callback: register });
+            } catch (err) {
+                console.error("[cal] failed to register linkReady:", err);
             }
 
-            register(); // Fallback in case linkReady already fired
+            register();
 
             cleanup = () => {
                 try {
-                    cal("off", { action: "bookingSuccessful", callback: onBooked });
-                    cal("off", { action: "linkReady", callback: register });
-                } catch (e) {
-                    console.error("Failed to clean up Cal.com events:", e);
+                    calRef("off", { action: "bookingSuccessful", callback: onBooked });
+                    calRef("off", { action: "linkReady", callback: register });
+                } catch {
                 }
             };
-        });
+        })();
 
-        return () => {
-            if (cleanup) cleanup();
-        };
+        return () => cleanup();
     }, []);
 
-    return isBooked;
+    return { isBooked, bookingData };
+}
+
+function extractBookingFields(raw) {
+    return {
+        uid: raw?.booking?.uid,
+        title: raw?.eventType?.title,
+        startTime: raw?.booking?.startTime,
+        endTime: raw?.booking?.endTime,
+        name: raw?.booking?.attendees?.[0]?.name,
+        notes: raw?.booking?.description,
+    };
 }
