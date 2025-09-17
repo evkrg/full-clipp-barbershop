@@ -15,20 +15,22 @@ const DetailItem = ({ icon, label, children }) => (
   </div>
 );
 
+const formatBookingTime = (startISO, endISO) => {
+  if (!startISO || !endISO) return <span>—</span>;
+  const start = new Date(startISO);
+  const end = new Date(endISO);
+  const datePart = start.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
+  const timePart = `${start.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })} – ${end.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })}`;
+  return (
+    <>
+      <span className="block">{datePart}</span>
+      <span className="block text-base font-medium text-slate-500">{timePart}</span>
+    </>
+  );
+};
+
 export default function ConfirmationCard({ data }) {
-  const formatBookingTime = (startISO, endISO) => {
-    if (!startISO || !endISO) return <span>—</span>;
-    const start = new Date(startISO);
-    const end = new Date(endISO);
-    const datePart = start.toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" });
-    const timePart = `${start.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })} – ${end.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false })}`;
-    return (
-      <>
-        <span className="block">{datePart}</span>
-        <span className="block text-base font-medium text-slate-500">{timePart}</span>
-      </>
-    );
-  };
+  const firstName = data?.name?.split(' ')[0] || 'customer';
 
   return (
     <div className="w-full overflow-hidden">
@@ -36,7 +38,7 @@ export default function ConfirmationCard({ data }) {
         <CheckCircleIcon className="h-16 w-16 text-emerald-500" aria-hidden="true" />
         <div className="space-y-1">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Appointment Confirmed!</h1>
-          <p className="text-slate-600">Thanks, {data?.name?.trim().split(/\s+/)[0]}! Your slot is officially reserved.</p>
+          <p className="text-slate-600">Thanks, {firstName}! Your slot is officially reserved.</p>
         </div>
       </div>
 

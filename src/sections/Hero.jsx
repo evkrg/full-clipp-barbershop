@@ -46,7 +46,7 @@ export default function Hero() {
 
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
                     <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-slate-300">
-                        <img src="/fullclip-logo.webp" alt="Full Clipp Barbershop Interior" className="h-full w-full object-cover" fetchPriority="high" />
+                        <img src="/fullclip-logo.webp" alt="Full Clipp Barbershop logo" className="h-full w-full object-cover" fetchPriority="high" />
                     </div>
                 </motion.div>
             </div>
