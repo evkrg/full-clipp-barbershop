@@ -7,7 +7,7 @@ export default function TshirtsSection() {
             <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
                 <div className="sm:flex sm:items-baseline sm:justify-between">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our T-shirts</h2>
-                    <p className="hidden sm:block text-sm text-slate-600">
+                    <p className="mt-2 text-sm text-slate-600 sm:mt-0">
                         Available for purchase at the shop.
                     </p>
                 </div>

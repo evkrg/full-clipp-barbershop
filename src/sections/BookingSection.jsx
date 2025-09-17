@@ -24,7 +24,7 @@ export default function BookingSection({ isBooked, bookingData }) {
                             <ConfirmationCard data={bookingData} />
                         ) : (
                             <Cal
-                                calLink="evkrg"
+                                calLink="fio-lhakhz"
                                 className="w-full min-h-[780px]"
                                 config={{ theme: "light" }}
                             />

@@ -44,6 +44,7 @@ export function useCalcomBooking() {
                     calRef("off", { action: "bookingSuccessful", callback: onBooked });
                     calRef("off", { action: "linkReady", callback: register });
                 } catch {
+                    // Ignore cleanup errors
                 }
             };
         })();
