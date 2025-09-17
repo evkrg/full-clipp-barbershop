@@ -1,4 +1,3 @@
-// src/sections/TshirtsSection.jsx
 import { tshirtsData } from "../data.jsx";
 import TshirtCard from "../components/TshirtCard";
 

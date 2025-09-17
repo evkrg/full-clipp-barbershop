@@ -1,4 +1,3 @@
-// src/components/Button.jsx
 export default function Button({ as: Component = "a", variant = "primary", className, ...props }) {
     const baseClasses = "inline-block rounded-lg px-6 py-3 text-sm font-semibold transition-transform active:scale-95";
 

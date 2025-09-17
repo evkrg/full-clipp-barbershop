@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useCalcomBooking } from "./hooks/useCalcomBooking";
 import Header from "./sections/Header";
 import Hero from "./sections/Hero";

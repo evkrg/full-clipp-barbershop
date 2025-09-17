@@ -1,4 +1,3 @@
-// src/sections/Hero.jsx
 import { motion } from "framer-motion";
 import { Clock, MapPin, Star, ExternalLink } from "lucide-react";
 import Button from "../components/Button";
@@ -12,7 +11,7 @@ export default function Hero() {
                         Classic cuts. Modern style.
                     </h1>
                     <p className="mt-4 text-slate-600 md:text-lg">
-                        Look sharp without the hassle. Book your appointment in seconds and let our master barbers do the rest.
+                        Look sharp without the hassle. Book your appointment in seconds and let our barber do the rest.
                     </p>
 
                     <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -27,7 +26,7 @@ export default function Hero() {
                         </div>
                         <address className="flex items-center gap-3 not-italic">
                             <MapPin className="h-5 w-5 text-slate-500" />
-                            <a href="#" target="_blank" rel="noreferrer" className="text-slate-700 hover:text-slate-900 underline underline-offset-4">
+                            <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="text-slate-700 hover:text-slate-900 underline underline-offset-4">
                                 Drosopoulou 6, 11257 Athens, Greece
                             </a>
                         </address>
@@ -37,7 +36,7 @@ export default function Hero() {
                                     <Star key={i} className="h-5 w-5 text-amber-400 fill-current" />
                                 ))}
                             </div>
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center gap-1.5">
+                            <a href="https://search.google.com/local/writereview?placeid=ChIJB9QJlz2joRQR71lP3PdXlkM" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center gap-1.5">
                                 <span>5.0 stars on Google</span>
                                 <ExternalLink className="h-4 w-4" />
                             </a>

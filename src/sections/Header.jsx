@@ -1,4 +1,3 @@
-// src/sections/Header.jsx
 import { useState } from "react";
 import { Scissors, Menu, X } from "lucide-react";
 import Button from "../components/Button";

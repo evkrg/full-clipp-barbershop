@@ -21,7 +21,7 @@ export default function VisitUsSection() {
                     </div>
                     <div className="space-y-4">
                         <InfoLine icon={MapPin}>
-                            <a href="#" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                            <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
                                 Drosopoulou 6, 11257 Athens, Greece
                             </a>
                         </InfoLine>
@@ -34,7 +34,7 @@ export default function VisitUsSection() {
                             </a>
                         </InfoLine>
                         <InfoLine icon={Instagram}>
-                            <a href="#" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                            <a href="https://instagram.com/fullclippbarbershop" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
                                 @fullclippbarbershop
                             </a>
                         </InfoLine>
@@ -46,7 +46,7 @@ export default function VisitUsSection() {
                     <ul className="mt-5 grid gap-4 text-base text-slate-700">
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
-                            <span>Experienced barbers with a passion for precision and detail.</span>
+                            <span>Experienced barber with a passion for precision and detail.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />

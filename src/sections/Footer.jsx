@@ -1,4 +1,3 @@
-// src/sections/Footer.jsx
 import { Instagram, Scissors } from 'lucide-react';
 import Button from '../components/Button';
 
@@ -13,7 +12,7 @@ export default function Footer() {
                     </div>
                     <div className="flex items-center gap-6">
                         <a
-                            href="#"
+                            href="https://instagram.com/fullclippbarbershop"
                             target="_blank"
                             rel="noreferrer"
                             className="text-slate-500 hover:text-slate-800 transition-colors"

@@ -1,4 +1,3 @@
-// src/components/TshirtCard.jsx
 export default function TshirtCard({ shirt }) {
     return (
         <div key={shirt.id} className="group relative">

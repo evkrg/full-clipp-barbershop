@@ -18,8 +18,6 @@ export function useCalcomBooking() {
                 firedRef.current = true;
 
                 const raw = e?.detail?.data || {};
-                console.log("[cal] bookingSuccessful payload:", raw);
-
                 const data = extractBookingFields(raw);
                 setIsBooked(true);
                 setBookingData(data);
