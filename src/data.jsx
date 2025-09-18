@@ -4,8 +4,9 @@ export const tshirtsData = [
         title: "Classic Logo Tee",
         price: "€15",
         desc: "Our original black tee with the Full Clipp logo.",
-        imageUrl: "/tshirts/tshirt.webp",
-        imageWidth: 736,
-        imageHeight: 1104,
+        imageUrlFront: "/tshirts/classic-logo-tee/tshirt-front.webp",
+        imageUrlBack: "/tshirts/classic-logo-tee/tshirt-back.webp",
+        imageWidth: 400,
+        imageHeight: 500,
     },
 ];

@@ -1,29 +1,37 @@
+import { useState } from "react";
+
 export default function TshirtCard({ shirt }) {
     const width = shirt.imageWidth ?? 800;
     const height = shirt.imageHeight ?? 800;
     const aspectRatio = width / height;
+    const hasBack = Boolean(shirt.imageUrlBack);
+
+    const [showBack, setShowBack] = useState(false);
 
     return (
-        <div key={shirt.id} className="group relative">
+        <div key={shirt.id} className="relative">
             <div
-                className="relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100"
+                className={`relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100 ${hasBack ? "cursor-pointer select-none" : ""
+                    }`}
                 style={{ aspectRatio }}
+                onClick={() => hasBack && setShowBack((s) => !s)}
             >
                 <img
-                    src={shirt.imageUrl}
-                    alt={shirt.title}
+                    src={showBack && hasBack ? shirt.imageUrlBack : shirt.imageUrlFront}
+                    alt={`${shirt.title} (${showBack && hasBack ? "back" : "front"})`}
                     width={width}
                     height={height}
                     loading="lazy"
                     decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-300 ease-in-out group-hover:scale-105"
+                    className="h-full w-full object-cover object-center transition-all duration-300 ease-in-out"
                 />
             </div>
-            <div className="mt-4 flex justify-between">
+
+            {/* Details */}
+            <div className="mt-4 flex justify-between gap-3">
                 <div>
                     <h3 className="text-base font-semibold text-slate-800">
-                        <a href="#" className="focus:outline-none">
-                            <span className="absolute inset-0" aria-hidden="true" />
+                        <a href="#" className="focus:outline-none underline-offset-2 hover:underline">
                             {shirt.title}
                         </a>
                     </h3>
