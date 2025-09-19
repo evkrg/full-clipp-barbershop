@@ -1,5 +1,12 @@
 import { useState } from "react";
 
+const priceFormatter = new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+});
+
 export default function TshirtCard({ shirt }) {
     const width = shirt.imageWidth ?? 800;
     const height = shirt.imageHeight ?? 800;
@@ -7,6 +14,10 @@ export default function TshirtCard({ shirt }) {
     const hasBack = Boolean(shirt.imageUrlBack);
 
     const [showBack, setShowBack] = useState(false);
+    const priceLabel =
+        typeof shirt.price === "number"
+            ? priceFormatter.format(shirt.price)
+            : shirt.price;
 
     return (
         <div key={shirt.id} className="relative">
@@ -30,15 +41,11 @@ export default function TshirtCard({ shirt }) {
             {/* Details */}
             <div className="mt-4 flex justify-between gap-3">
                 <div>
-                    <h3 className="text-base font-semibold text-slate-800">
-                        <a href="#" className="focus:outline-none underline-offset-2 hover:underline">
-                            {shirt.title}
-                        </a>
-                    </h3>
+                    <h3 className="text-base font-semibold text-slate-800">{shirt.title}</h3>
                     <p className="mt-1 text-sm text-slate-500">{shirt.desc}</p>
                 </div>
                 <p className="text-base font-medium text-slate-900 bg-slate-100 border border-slate-200 rounded-md px-3 py-1 h-fit">
-                    {shirt.price}
+                    {priceLabel}
                 </p>
             </div>
         </div>

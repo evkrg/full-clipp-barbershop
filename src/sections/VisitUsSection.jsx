@@ -41,7 +41,11 @@ export default function VisitUsSection() {
                     </div>
                 </div>
 
-                <div className="rounded-xl border border-slate-200 p-8 bg-slate-50 shadow-sm">
+                <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-gradient-to-br from-white via-slate-50 to-white p-8 shadow-sm">
+                    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+                        <div className="absolute right-[-15%] top-[-20%] h-[24rem] w-[24rem] rounded-full bg-gradient-radial from-slate-200/30 via-slate-50/0 to-transparent blur-3xl" />
+                        <div className="absolute left-[-20%] bottom-[-25%] h-[20rem] w-[20rem] rounded-full bg-gradient-radial from-slate-200/25 via-slate-50/0 to-transparent blur-3xl" />
+                    </div>
                     <h3 className="text-lg font-semibold text-slate-900">Why Choose Full Clipp?</h3>
                     <ul className="mt-5 grid gap-4 text-base text-slate-700">
                         <li className="flex items-start gap-3">

@@ -34,7 +34,7 @@ export default function ConfirmationCard({ data }) {
 
   return (
     <div className="w-full overflow-hidden">
-      <div className="flex flex-col items-center gap-4 bg-slate-50/70 p-8 text-center">
+      <div className="flex flex-col items-center gap-4 border-b border-slate-200 p-8 text-center">
         <CheckCircleIcon className="h-16 w-16 text-emerald-500" aria-hidden="true" />
         <div className="space-y-1">
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Appointment Confirmed!</h1>
@@ -52,8 +52,8 @@ export default function ConfirmationCard({ data }) {
         </dl>
       </div>
 
-      <div className="border-t border-slate-200 bg-slate-50/70 px-8 py-6 text-center">
-        <p className="mb-4 text-sm text-slate-500">Need to reschedule or cancel? No problem.</p>
+      <div className="border-t border-slate-200 px-8 py-6 text-center">
+        <p className="mb-4 text-sm text-slate-600">Need to reschedule or cancel? No problem.</p>
         <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noreferrer">
           Manage Your Booking
         </Button>

@@ -4,8 +4,15 @@ import Button from "../components/Button";
 
 export default function Hero() {
     return (
-        <section id="home" className="relative bg-slate-50 overflow-hidden">
-            <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-28 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+        <section id="#" className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10"
+            >
+                <div className="absolute -left-1/3 top-[-15%] h-[60rem] w-[60rem] rounded-full bg-gradient-radial from-slate-200/50 via-slate-50/0 to-transparent blur-3xl" />
+                <div className="absolute right-[-20%] bottom-[-20%] h-[40rem] w-[40rem] rounded-full bg-gradient-radial from-slate-200/40 via-slate-50/0 to-transparent blur-3xl" />
+            </div>
+            <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:px-8 lg:py-28 md:grid-cols-2">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-slate-900">
                         Classic cuts. Modern style.

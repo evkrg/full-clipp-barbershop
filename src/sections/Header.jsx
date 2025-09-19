@@ -9,8 +9,60 @@ const navLinks = [
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isNavHidden, setIsNavHidden] = useState(false);
     const buttonRef = useRef(null);
     const menuRef = useRef(null);
+    const lastScrollY = useRef(0);
+    const scrollTicking = useRef(false);
+
+    useEffect(() => {
+        const threshold = 8;
+        lastScrollY.current = window.scrollY;
+
+        const updateVisibility = () => {
+            const scrollY = window.scrollY;
+
+            if (scrollY <= 0) {
+                lastScrollY.current = 0;
+                setIsNavHidden(false);
+                scrollTicking.current = false;
+                return;
+            }
+
+            const delta = scrollY - lastScrollY.current;
+
+            if (Math.abs(delta) < threshold) {
+                scrollTicking.current = false;
+                return;
+            }
+
+            const shouldHide = delta > 0;
+
+            setIsNavHidden((prev) => {
+                if (shouldHide && !prev) return true;
+                if (!shouldHide && prev) return false;
+                return prev;
+            });
+
+            lastScrollY.current = scrollY;
+            scrollTicking.current = false;
+        };
+
+        const handleScroll = () => {
+            if (scrollTicking.current) return;
+            scrollTicking.current = true;
+            window.requestAnimationFrame(updateVisibility);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    useEffect(() => {
+        if (isMenuOpen) {
+            setIsNavHidden(false);
+        }
+    }, [isMenuOpen]);
 
     // Close on Escape
     useEffect(() => {
@@ -56,9 +108,12 @@ export default function Header() {
     }, [isMenuOpen]);
 
     return (
-        <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur">
+        <header
+            className={`fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur transition-transform duration-300 ${isNavHidden ? "-translate-y-full" : "translate-y-0"
+                }`}
+        >
             <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main">
-                <a href="#home" aria-label="Home" className="flex items-center gap-2 text-lg font-bold">
+                <a href="#" className="flex items-center gap-2 text-lg font-bold">
                     <Scissors className="h-6 w-6" />
                     <span>Full Clipp</span>
                 </a>
