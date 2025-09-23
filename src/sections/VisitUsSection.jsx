@@ -22,11 +22,11 @@ export default function VisitUsSection() {
                     <div className="space-y-4">
                         <InfoLine icon={MapPin}>
                             <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
-                                Drosopoulou 6, 11257 Athens, Greece
+                                Ioannou Drosopoulou 6, 11257 Athens, Greece
                             </a>
                         </InfoLine>
                         <InfoLine icon={Clock}>
-                            Δευτέρα–Παρασκευή 9:00–17:00
+                            Τρίτη-Παρασκευή 11:00–20:00, Σάββατο 11:00–18:00
                         </InfoLine>
                         <InfoLine icon={Phone}>
                             <a href="tel:+302108228684" className="hover:text-slate-900 underline underline-offset-4">

@@ -30,12 +30,12 @@ export default function Hero() {
                         <address className="flex items-center gap-3 not-italic">
                             <MapPin className="h-5 w-5 text-slate-500" />
                             <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="text-slate-700 hover:text-slate-900 underline underline-offset-4">
-                                Drosopoulou 6, 11257 Athens, Greece
+                                Ioannou Drosopoulou 6, 11257 Athens, Greece
                             </a>
                         </address>
                         <div className="flex items-center gap-3">
                             <Clock className="h-5 w-5 text-slate-500" />
-                            <span className="text-slate-700">Δευτέρα–Παρασκευή 9:00–17:00</span>
+                            <span className="text-slate-700">Τρίτη-Παρασκευή 11:00–20:00, Σάββατο 11:00–18:00</span>
                         </div>
                         <div className="flex items-center gap-3">
                             <div className="flex items-center">
