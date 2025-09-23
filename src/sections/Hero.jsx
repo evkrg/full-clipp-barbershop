@@ -18,7 +18,7 @@ export default function Hero() {
                         Classic cuts. Modern style.
                     </h1>
                     <p className="mt-4 text-slate-600 md:text-lg">
-                        Μείνε fresh χωρίς μπέρδεμα. Ραντεβού σε δευτερόλεπτα, τα υπόλοιπα τα κανονίζει ο barber.
+                        Κλείσε ραντεβού εύκολα και γρήγορα, και άσε τα υπόλοιπα σε μας.
                     </p>
 
                     <div className="mt-8 flex flex-wrap items-center gap-4">
