@@ -20,7 +20,7 @@ export default function Footer() {
                         >
                             <Instagram className="h-6 w-6" />
                         </a>
-                        <Button href="#booking" className="px-5 py-2 !rounded-md">Book Now</Button>
+                        <Button href="#booking" className="px-5 py-2 !rounded-md">Κλείσε ραντεβού</Button>
                     </div>
                 </div>
                 <div className="mt-8 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">

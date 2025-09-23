@@ -129,7 +129,7 @@ export default function Header() {
                 </ul>
 
                 <div className="hidden sm:block">
-                    <Button href="#booking" className="px-5 py-2 !rounded-md">Book Now</Button>
+                    <Button href="#booking" className="px-5 py-2 !rounded-md">Κλείσε ραντεβού</Button>
                 </div>
 
                 <button
@@ -164,7 +164,7 @@ export default function Header() {
                             ))}
                             <li>
                                 <Button href="#booking" className="w-full text-center" onClick={() => setIsMenuOpen(false)}>
-                                    Book Now
+                                    Κλείσε ραντεβού
                                 </Button>
                             </li>
                         </ul>

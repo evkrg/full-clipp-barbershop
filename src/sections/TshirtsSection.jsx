@@ -15,7 +15,7 @@ export default function TshirtsSection() {
                 <div className="max-w-2xl">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our T-shirts</h2>
                     <p className="mt-3 text-sm text-slate-600 sm:text-base">
-                        Available for purchase at the shop.
+                        Διαθέσιμα για αγορά στο μαγαζί.
                     </p>
                 </div>
 

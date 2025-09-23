@@ -17,7 +17,7 @@ export default function VisitUsSection() {
                 <div className="space-y-8">
                     <div>
                         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Come Visit Us</h2>
-                        <p className="mt-3 text-lg text-slate-600">Walk-ins are always welcome.</p>
+                        <p className="mt-3 text-lg text-slate-600">Περνάς και χωρίς ραντεβού.</p>
                     </div>
                     <div className="space-y-4">
                         <InfoLine icon={MapPin}>
@@ -26,7 +26,7 @@ export default function VisitUsSection() {
                             </a>
                         </InfoLine>
                         <InfoLine icon={Clock}>
-                            Tue–Fri 11:00–20:30 · Sat 11:00–18:00
+                            Δευτέρα–Παρασκευή 9:00–17:00
                         </InfoLine>
                         <InfoLine icon={Phone}>
                             <a href="tel:+302108228684" className="hover:text-slate-900 underline underline-offset-4">
@@ -46,19 +46,19 @@ export default function VisitUsSection() {
                         <div className="absolute right-[-15%] top-[-20%] h-[24rem] w-[24rem] rounded-full bg-gradient-radial from-slate-200/30 via-slate-50/0 to-transparent blur-3xl" />
                         <div className="absolute left-[-20%] bottom-[-25%] h-[20rem] w-[20rem] rounded-full bg-gradient-radial from-slate-200/25 via-slate-50/0 to-transparent blur-3xl" />
                     </div>
-                    <h3 className="text-lg font-semibold text-slate-900">Why Choose Full Clipp?</h3>
+                    <h3 className="text-lg font-semibold text-slate-900">Γιατί Full Clipp;</h3>
                     <ul className="mt-5 grid gap-4 text-base text-slate-700">
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
-                            <span>Experienced barber with a passion for precision and detail.</span>
+                            <span>Κουρέματα με ακρίβεια και στυλ, από έμπειρο barber.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
-                            <span>We use only premium products and maintain spotless, hygienic tools.</span>
+                            <span>Χρησιμοποιούμε μόνο premium προϊόντα και εργαλεία.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
-                            <span>A friendly, relaxing atmosphere where you can unwind.</span>
+                            <span>Φιλικό, chill vibe για να χαλαρώσεις.</span>
                         </li>
                     </ul>
                 </div>

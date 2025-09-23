@@ -18,25 +18,25 @@ export default function Hero() {
                         Classic cuts. Modern style.
                     </h1>
                     <p className="mt-4 text-slate-600 md:text-lg">
-                        Look sharp without the hassle. Book your appointment in seconds and let our barber do the rest.
+                        Μείνε fresh χωρίς μπέρδεμα. Ραντεβού σε δευτερόλεπτα, τα υπόλοιπα τα κανονίζει ο barber.
                     </p>
 
                     <div className="mt-8 flex flex-wrap items-center gap-4">
-                        <Button href="#booking">Book an Appointment</Button>
-                        <Button href="#tshirts" variant="secondary">See T-shirts</Button>
+                        <Button href="#booking">Κλείσε ραντεβού</Button>
+                        <Button href="#tshirts" variant="secondary">Δες τα T-shirts</Button>
                     </div>
 
                     <div className="mt-10 border-t border-slate-200 pt-6 grid gap-5 text-sm">
-                        <div className="flex items-center gap-3">
-                            <Clock className="h-5 w-5 text-slate-500" />
-                            <span className="text-slate-700">Tue–Fri 11:00–20:30 · Sat 11:00–18:00</span>
-                        </div>
                         <address className="flex items-center gap-3 not-italic">
                             <MapPin className="h-5 w-5 text-slate-500" />
                             <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="text-slate-700 hover:text-slate-900 underline underline-offset-4">
                                 Drosopoulou 6, 11257 Athens, Greece
                             </a>
                         </address>
+                        <div className="flex items-center gap-3">
+                            <Clock className="h-5 w-5 text-slate-500" />
+                            <span className="text-slate-700">Δευτέρα–Παρασκευή 9:00–17:00</span>
+                        </div>
                         <div className="flex items-center gap-3">
                             <div className="flex items-center">
                                 {Array.from({ length: 5 }).map((_, i) => (
