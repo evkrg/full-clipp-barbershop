@@ -1,3 +1,9 @@
+export const workingHours = [
+    { dayLabel: "Τρίτη, Πέμπτη & Παρασκευή", hours: "11:00–20:00" },
+    { dayLabel: "Τετάρτη", hours: "12:00–20:00" },
+    { dayLabel: "Σάββατο", hours: "11:00–18:00" },
+];
+
 export const tshirtsData = [
     {
         id: 1,

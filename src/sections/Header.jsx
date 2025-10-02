@@ -65,7 +65,6 @@ export default function Header() {
         }
     }, [isMenuOpen]);
 
-    // Close on Escape
     useEffect(() => {
         if (!isMenuOpen) return;
         const onKey = (e) => e.key === "Escape" && setIsMenuOpen(false);
@@ -73,7 +72,6 @@ export default function Header() {
         return () => document.removeEventListener("keydown", onKey);
     }, [isMenuOpen]);
 
-    // Close on outside click
     useEffect(() => {
         if (!isMenuOpen) return;
         const onClick = (e) => {
@@ -93,7 +91,6 @@ export default function Header() {
         };
     }, [isMenuOpen]);
 
-    // Close on scroll
     useEffect(() => {
         if (!isMenuOpen) return;
         const onScroll = () => setIsMenuOpen(false);
@@ -101,7 +98,6 @@ export default function Header() {
         return () => window.removeEventListener("scroll", onScroll);
     }, [isMenuOpen]);
 
-    // Return focus to button after close
     useEffect(() => {
         if (!isMenuOpen && buttonRef.current) {
             buttonRef.current.focus();
@@ -114,7 +110,7 @@ export default function Header() {
                 }`}
         >
             <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main">
-                <a href="#" className="flex items-center gap-2 text-lg font-bold">
+                <a href="#home" className="flex items-center gap-2 text-lg font-bold">
                     <Icon iconNode={barberPole} className="h-6 w-6" />
                     <span>Full Clipp</span>
                 </a>

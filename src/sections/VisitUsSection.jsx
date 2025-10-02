@@ -1,12 +1,11 @@
-// src/sections/VisitUsSection.jsx
 import React from 'react';
 import { MapPin, Clock, Phone, Instagram, CheckCircle } from 'lucide-react';
+import { workingHours } from '../data.jsx';
 
-// A small helper component to keep the info lines consistent and clean.
-const InfoLine = ({ icon, children }) => (
-    <div className="flex items-center gap-3 text-slate-700">
-        {React.createElement(icon, { className: "h-5 w-5 flex-shrink-0 text-slate-500" })}
-        <span className="text-base">{children}</span>
+const InfoLine = ({ icon: Icon, children }) => (
+    <div className="flex items-start gap-3 text-slate-700">
+        <Icon className="h-5 w-5 flex-shrink-0 text-slate-500" />
+        <div className="text-base leading-relaxed">{children}</div>
     </div>
 );
 
@@ -21,12 +20,24 @@ export default function VisitUsSection() {
                     </div>
                     <div className="space-y-4">
                         <InfoLine icon={MapPin}>
-                            <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
-                                Ioannou Drosopoulou 6, 11257 Athens, Greece
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                                Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </InfoLine>
                         <InfoLine icon={Clock}>
-                            Τρίτη-Παρασκευή 11:00–20:00, Σάββατο 11:00–18:00
+                            <ul className="grid gap-1 text-sm text-slate-700 sm:text-base">
+                                {workingHours.map((entry) => (
+                                    <li
+                                        key={entry.dayLabel}
+                                        className="flex flex-wrap items-center justify-between gap-2 sm:flex-nowrap"
+                                    >
+                                        <span className="sm:min-w-[14rem]">{entry.dayLabel}</span>
+                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600">
+                                            {entry.hours}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
                         </InfoLine>
                         <InfoLine icon={Phone}>
                             <a href="tel:+302108228684" className="hover:text-slate-900 underline underline-offset-4">

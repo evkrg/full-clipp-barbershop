@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Clock, MapPin, Star, ExternalLink } from "lucide-react";
 import Button from "../components/Button";
+import { workingHours } from "../data.jsx";
 
 export default function Hero() {
     return (
-        <section id="#" className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
+        <section id="home" className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 -z-10"
@@ -18,7 +19,7 @@ export default function Hero() {
                         Classic cuts. Modern style.
                     </h1>
                     <p className="mt-4 text-slate-600 md:text-lg">
-                        Κλείσε ραντεβού εύκολα και γρήγορα, και άσε τα υπόλοιπα σε μας.
+                        Κλείσε ραντεβού εύκολα και γρήγορα!
                     </p>
 
                     <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -29,13 +30,27 @@ export default function Hero() {
                     <div className="mt-10 border-t border-slate-200 pt-6 grid gap-5 text-sm">
                         <address className="flex items-center gap-3 not-italic">
                             <MapPin className="h-5 w-5 text-slate-500" />
-                            <a href="https://maps.google.com/maps?ll=37.995858,23.733835&cid=4870176769112496623" target="_blank" rel="noreferrer" className="text-slate-700 hover:text-slate-900 underline underline-offset-4">
-                                Ioannou Drosopoulou 6, 11257 Athens, Greece
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                                Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </address>
-                        <div className="flex items-center gap-3">
-                            <Clock className="h-5 w-5 text-slate-500" />
-                            <span className="text-slate-700">Τρίτη-Παρασκευή 11:00–20:00, Σάββατο 11:00–18:00</span>
+                        <div className="flex items-start gap-3">
+                            <Clock className="mt-1 h-5 w-5 flex-shrink-0 text-slate-500" />
+                            <ul className="grid gap-1 text-slate-700">
+                                {workingHours.map((entry) => (
+                                    <li
+                                        key={entry.dayLabel}
+                                        className="flex flex-wrap items-center justify-between gap-2 sm:flex-nowrap"
+                                    >
+                                        <span className="text-slate-900 sm:min-w-[14rem]">
+                                            {entry.dayLabel}
+                                        </span>
+                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600">
+                                            {entry.hours}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                         <div className="flex items-center gap-3">
                             <div className="flex items-center">
