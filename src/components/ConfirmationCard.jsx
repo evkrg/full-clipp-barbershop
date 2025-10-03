@@ -54,9 +54,8 @@ export default function ConfirmationCard({ data }) {
       </div>
 
       <div className="border-t border-slate-200 px-8 py-6 text-center">
-        <p className="mb-4 text-sm text-slate-600">Άλλαξες γνώμη για την ώρα ή θες ακύρωση; No problem.</p>
         <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noreferrer">
-          Το ραντεβού μου
+          Διαχείριση ραντεβού
         </Button>
       </div>
     </div>

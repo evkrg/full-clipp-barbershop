@@ -25,14 +25,16 @@ export default function VisitUsSection() {
                             </a>
                         </InfoLine>
                         <InfoLine icon={Clock}>
-                            <ul className="grid gap-1 text-sm text-slate-700 sm:text-base">
+                            <ul className="grid gap-1.5 text-sm text-slate-700 sm:text-base">
                                 {workingHours.map((entry) => (
                                     <li
                                         key={entry.dayLabel}
-                                        className="flex flex-wrap items-center justify-between gap-2 sm:flex-nowrap"
+                                        className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4"
                                     >
-                                        <span className="sm:min-w-[14rem]">{entry.dayLabel}</span>
-                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600">
+                                        <span className="leading-tight text-slate-900">
+                                            {entry.dayLabel}
+                                        </span>
+                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600 tabular-nums">
                                             {entry.hours}
                                         </span>
                                     </li>
