@@ -38,7 +38,7 @@ export default function ConfirmationCard({ data }) {
       <div className="flex flex-col items-center gap-4 border-b border-slate-200 p-8 text-center">
         <CheckCircleIcon className="h-16 w-16 text-emerald-500" aria-hidden="true" />
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Το ραντεβού έκλεισε!</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 whitespace-nowrap">Το ραντεβού έκλεισε!</h1>
           <p className="text-slate-600">Ευχαριστούμε! Σε περιμένουμε.</p>
         </div>
       </div>
@@ -54,9 +54,8 @@ export default function ConfirmationCard({ data }) {
       </div>
 
       <div className="border-t border-slate-200 px-8 py-6 text-center">
-        <p className="mb-4 text-sm text-slate-600">Άλλαξες γνώμη για την ώρα ή θες ακύρωση; No problem.</p>
         <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noreferrer">
-          Το ραντεβού μου
+          Διαχείριση ραντεβού
         </Button>
       </div>
     </div>

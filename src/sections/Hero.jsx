@@ -36,16 +36,16 @@ export default function Hero() {
                         </address>
                         <div className="flex items-start gap-3">
                             <Clock className="mt-1 h-5 w-5 flex-shrink-0 text-slate-500" />
-                            <ul className="grid gap-1 text-slate-700">
+                            <ul className="grid gap-1.5 text-slate-700">
                                 {workingHours.map((entry) => (
                                     <li
                                         key={entry.dayLabel}
-                                        className="flex flex-wrap items-center justify-between gap-2 sm:flex-nowrap"
+                                        className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 text-sm"
                                     >
-                                        <span className="text-slate-900 sm:min-w-[14rem]">
+                                        <span className="leading-tight text-slate-900">
                                             {entry.dayLabel}
                                         </span>
-                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600">
+                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600 tabular-nums">
                                             {entry.hours}
                                         </span>
                                     </li>
@@ -68,7 +68,24 @@ export default function Hero() {
 
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
                     <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-slate-300">
-                        <img src="/fullclip-logo.webp" alt="Full Clipp Barbershop logo" className="h-full w-full object-cover" fetchPriority="high" />
+                        <img
+                            src="/logos/fullclip-logo-800.webp"
+                            srcSet="/logos/fullclip-logo-400.webp 400w,
+                                    /logos/fullclip-logo-800.webp 800w,
+                                    /logos/fullclip-logo-1200.webp 1200w,
+                                    /logos/fullclip-logo-1600.webp 1600w,
+                                    /logos/fullclip-logo-2160.webp 2160w"
+                            sizes="(max-width: 640px) 400px,
+                                   (max-width: 1024px) 800px,
+                                   (max-width: 1440px) 1200px,
+                                   (max-width: 1920px) 1600px,
+                                   2160px"
+                            width={800}
+                            height={800}
+                            alt="Full Clipp Barbershop logo"
+                            className="h-full w-full object-cover"
+                            fetchPriority="high"
+                        />
                     </div>
                 </motion.div>
             </div>
