@@ -1,1 +1,28 @@
 @import "tailwindcss";
+
+@layer base {
+    :root {
+        color-scheme: light;
+        --cal-bg: rgb(255 255 255);
+        --cal-surface: rgb(246 247 249);
+        --cal-border: rgb(229 231 235);
+        --btn-primary-bg: rgb(0 0 0);
+        --btn-primary-fg: rgb(255 255 255);
+        --btn-secondary-bg: rgb(255 255 255);
+    }
+
+    .dark {
+        color-scheme: dark;
+        --cal-bg: rgb(15 15 15);
+        --cal-surface: rgb(64 64 64);
+        --cal-border: rgb(38 38 38);
+        --btn-primary-bg: rgb(255 255 255);
+        --btn-primary-fg: rgb(0 0 0);
+        --btn-secondary-bg: rgb(23 23 23);
+    }
+}
+
+html,
+body {
+    background-color: var(--cal-bg);
+}

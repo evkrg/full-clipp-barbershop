@@ -10,7 +10,7 @@ export default function BarbershopPage() {
   const { isBooked, bookingData } = useCalcomBooking();
 
   return (
-    <div className="bg-white text-slate-900 font-sans antialiased">
+    <div className="font-sans antialiased">
       <Header />
       <main>
         <Hero />

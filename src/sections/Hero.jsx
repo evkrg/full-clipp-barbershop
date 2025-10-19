@@ -5,20 +5,13 @@ import { workingHours } from "../data.jsx";
 
 export default function Hero() {
     return (
-        <section id="home" className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white">
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 -z-10"
-            >
-                <div className="absolute -left-1/3 top-[-15%] h-[60rem] w-[60rem] rounded-full bg-gradient-radial from-slate-200/50 via-slate-50/0 to-transparent blur-3xl" />
-                <div className="absolute right-[-20%] bottom-[-20%] h-[40rem] w-[40rem] rounded-full bg-gradient-radial from-slate-200/40 via-slate-50/0 to-transparent blur-3xl" />
-            </div>
+        <section id="home" className="bg-[var(--cal-bg)]">
             <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:px-8 lg:py-28 md:grid-cols-2">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter text-slate-900">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter">
                         Classic cuts. Modern style.
                     </h1>
-                    <p className="mt-4 text-slate-600 md:text-lg">
+                    <p className="mt-4 opacity-80 text-lg">
                         Κλείσε ραντεβού εύκολα και γρήγορα!
                     </p>
 
@@ -27,25 +20,25 @@ export default function Hero() {
                         <Button href="#tshirts" variant="secondary">Δες τα T-shirts</Button>
                     </div>
 
-                    <div className="mt-10 border-t border-slate-200 pt-6 grid gap-5 text-sm">
+                    <div className="mt-10 border-t border-[var(--cal-border)] pt-6 grid gap-6 text-sm">
                         <address className="flex items-center gap-3 not-italic">
-                            <MapPin className="h-5 w-5 text-slate-500" />
-                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="hover:text-slate-900 underline underline-offset-4">
+                            <MapPin className="h-5 w-5 opacity-60" />
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </address>
                         <div className="flex items-start gap-3">
-                            <Clock className="mt-1 h-5 w-5 flex-shrink-0 text-slate-500" />
-                            <ul className="grid gap-1.5 text-slate-700">
+                            <Clock className="mt-1 h-5 w-5 flex-shrink-0 opacity-60" />
+                            <ul className="grid gap-1.5">
                                 {workingHours.map((entry) => (
                                     <li
                                         key={entry.dayLabel}
                                         className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 text-sm"
                                     >
-                                        <span className="leading-tight text-slate-900">
+                                        <span className="leading-tight opacity-80">
                                             {entry.dayLabel}
                                         </span>
-                                        <span className="inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-slate-600 tabular-nums">
+                                        <span className="inline-flex items-center rounded-full border border-[var(--cal-border)] px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide opacity-80 tabular-nums">
                                             {entry.hours}
                                         </span>
                                     </li>
@@ -58,7 +51,7 @@ export default function Hero() {
                                     <Star key={i} className="h-5 w-5 text-amber-400 fill-current" />
                                 ))}
                             </div>
-                            <a href="https://search.google.com/local/writereview?placeid=ChIJB9QJlz2joRQR71lP3PdXlkM" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center gap-1.5">
+                            <a href="https://search.google.com/local/writereview?placeid=ChIJB9QJlz2joRQR71lP3PdXlkM" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 <span>5.0 stars on Google</span>
                                 <ExternalLink className="h-4 w-4" />
                             </a>
@@ -67,21 +60,9 @@ export default function Hero() {
                 </motion.div>
 
                 <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-slate-300">
+                    <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
                         <img
-                            src="/logos/fullclip-logo-800.webp"
-                            srcSet="/logos/fullclip-logo-400.webp 400w,
-                                    /logos/fullclip-logo-800.webp 800w,
-                                    /logos/fullclip-logo-1200.webp 1200w,
-                                    /logos/fullclip-logo-1600.webp 1600w,
-                                    /logos/fullclip-logo-2160.webp 2160w"
-                            sizes="(max-width: 640px) 400px,
-                                   (max-width: 1024px) 800px,
-                                   (max-width: 1440px) 1200px,
-                                   (max-width: 1920px) 1600px,
-                                   2160px"
-                            width={800}
-                            height={800}
+                            src="/logo/fullclip-logo.webp"
                             alt="Full Clipp Barbershop logo"
                             className="h-full w-full object-cover"
                             fetchPriority="high"

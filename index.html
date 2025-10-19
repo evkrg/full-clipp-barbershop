@@ -3,6 +3,17 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('theme');
+        var mql = window.matchMedia('(prefers-color-scheme: dark)');
+        if (theme === 'dark' || (!theme && mql.matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) { }
+    })();
+  </script>
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
@@ -18,7 +29,7 @@
   <meta property="og:locale" content="el_GR" />
   <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:description" content="Full Clipp Barbershop Κυψέλη — κλασικά κουρέματα με ένα κλικ." />
-  <meta property="og:image" content="https://fullclippbarbershop.com/logos/fullclip-logo-og.webp" />
+  <meta property="og:image" content="https://fullclippbarbershop.com/logo/fullclip-logo-og.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <title>Full Clipp Barbershop</title>
@@ -73,10 +84,10 @@
       "description": "Full Clipp Barbershop Κυψέλη — κλασικά κουρέματα με ένα κλικ.",
       "url": "https://fullclippbarbershop.com",
       "sameAs": "https://instagram.com/fullclippbarbershop",
-      "logo": "https://fullclippbarbershop.com/logos/fullclip-logo-2160.webp",
+      "logo": "https://fullclippbarbershop.com/logo/fullclip-logo.webp",
       "image": [
-        "https://fullclippbarbershop.com/logos/fullclip-logo-2160.webp",
-        "https://fullclippbarbershop.com/logos/fullclip-logo-og.webp"
+        "https://fullclippbarbershop.com/logo/fullclip-logo.webp",
+        "https://fullclippbarbershop.com/logo/fullclip-logo-og.webp"
       ],
       "address": {
         "@type": "PostalAddress",

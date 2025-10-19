@@ -22,7 +22,7 @@ export default function TshirtCard({ shirt }) {
     return (
         <div key={shirt.id} className="relative">
             <div
-                className={`relative w-full overflow-hidden rounded-xl border border-slate-200 bg-slate-100 ${hasBack ? "cursor-pointer select-none" : ""
+                className={`relative w-full overflow-hidden rounded-xl border border-[var(--cal-border)] bg-[var(--cal-surface)] ${hasBack ? "cursor-pointer select-none" : ""
                     }`}
                 style={{ aspectRatio }}
                 onClick={() => hasBack && setShowBack((s) => !s)}
@@ -41,10 +41,10 @@ export default function TshirtCard({ shirt }) {
             {/* Details */}
             <div className="mt-4 flex justify-between gap-3">
                 <div>
-                    <h3 className="text-base font-semibold text-slate-800">{shirt.title}</h3>
-                    <p className="mt-1 text-sm text-slate-500">{shirt.desc}</p>
+                    <h3 className="text-base font-semibold">{shirt.title}</h3>
+                    <p className="mt-1 text-sm opacity-80">{shirt.desc}</p>
                 </div>
-                <p className="text-base font-medium text-slate-900 bg-slate-100 border border-slate-200 rounded-md px-3 py-1 h-fit">
+                <p className="text-base font-medium border border-[var(--cal-border)] bg-[var(--cal-surface)] text-fg rounded-md px-3 py-1 h-fit">
                     {priceLabel}
                 </p>
             </div>

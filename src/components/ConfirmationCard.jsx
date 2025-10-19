@@ -5,12 +5,12 @@ import Button from "./Button";
 
 const DetailItem = ({ icon, label, children }) => (
   <div className="flex w-full items-start gap-4">
-    <div className="flex-shrink-0 text-slate-400">
+    <div className="flex-shrink-0 text-fg/60">
       {React.createElement(icon, { className: "h-5 w-5", "aria-hidden": "true" })}
     </div>
     <div className="flex flex-col">
-      <dt className="text-sm font-medium text-slate-500">{label}</dt>
-      <dd className="mt-1 text-lg font-semibold text-slate-800">{children}</dd>
+      <dt className="text-sm font-medium text-fg/70">{label}</dt>
+      <dd className="mt-1 text-lg font-semibold text-fg">{children}</dd>
     </div>
   </div>
 );
@@ -27,7 +27,7 @@ const formatBookingTime = (startISO, endISO) => {
   return (
     <>
       <span className="block">{datePart}</span>
-      <span className="block text-base font-medium text-slate-500">{timePart}</span>
+      <span className="block text-base font-medium text-fg/70">{timePart}</span>
     </>
   );
 };
@@ -35,11 +35,11 @@ const formatBookingTime = (startISO, endISO) => {
 export default function ConfirmationCard({ data }) {
   return (
     <div className="w-full overflow-hidden">
-      <div className="flex flex-col items-center gap-4 border-b border-slate-200 p-8 text-center">
+      <div className="flex flex-col items-center gap-4 border-[var(--cal-border)] border-b p-8 text-center">
         <CheckCircleIcon className="h-16 w-16 text-emerald-500" aria-hidden="true" />
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 whitespace-nowrap">Το ραντεβού έκλεισε!</h1>
-          <p className="text-slate-600">Ευχαριστούμε! Σε περιμένουμε.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-fg whitespace-nowrap">Το ραντεβού έκλεισε!</h1>
+          <p className="text-fg/70">Ευχαριστούμε! Σε περιμένουμε.</p>
         </div>
       </div>
 
@@ -53,7 +53,7 @@ export default function ConfirmationCard({ data }) {
         </dl>
       </div>
 
-      <div className="border-t border-slate-200 px-8 py-6 text-center">
+      <div className="border-[var(--cal-border)] border-t px-8 py-6 text-center">
         <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noreferrer">
           Διαχείριση ραντεβού
         </Button>
