@@ -63,7 +63,7 @@ export default function VisitUsSection() {
                     <ul className="mt-5 grid gap-4 text-base text-slate-700">
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
-                            <span>Κουρέματα με ακρίβεια και στυλ, από έμπειρο barber.</span>
+                            <span>Κουρέματα με ακρίβεια και στυλ, από έμπειρους barbers.</span>
                         </li>
                         <li className="flex items-start gap-3">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0 text-emerald-600" />
