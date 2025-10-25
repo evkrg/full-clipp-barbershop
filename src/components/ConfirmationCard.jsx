@@ -54,7 +54,7 @@ export default function ConfirmationCard({ data }) {
       </div>
 
       <div className="border-[var(--cal-border)] border-t px-8 py-6 text-center">
-        <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noreferrer">
+        <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noopener noreferrer">
           Διαχείριση ραντεβού
         </Button>
       </div>

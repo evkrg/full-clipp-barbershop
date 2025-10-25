@@ -23,7 +23,7 @@ export default function Hero() {
                     <div className="mt-10 border-t border-[var(--cal-border)] pt-6 grid gap-6 text-sm">
                         <address className="flex items-center gap-3 not-italic">
                             <MapPin className="h-5 w-5 opacity-60" />
-                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </address>

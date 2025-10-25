@@ -20,7 +20,7 @@ export default function TshirtCard({ shirt }) {
             : shirt.price;
 
     return (
-        <div key={shirt.id} className="relative">
+        <div className="relative">
             <div
                 className={`relative w-full overflow-hidden rounded-xl border border-[var(--cal-border)] bg-[var(--cal-surface)] ${hasBack ? "cursor-pointer select-none" : ""
                     }`}
@@ -38,7 +38,6 @@ export default function TshirtCard({ shirt }) {
                 />
             </div>
 
-            {/* Details */}
             <div className="mt-4 flex justify-between gap-3">
                 <div>
                     <h3 className="text-base font-semibold">{shirt.title}</h3>

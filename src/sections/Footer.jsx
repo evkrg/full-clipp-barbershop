@@ -14,7 +14,7 @@ export default function Footer() {
                         <a
                             href="https://instagram.com/fullclippbarbershop"
                             target="_blank"
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
                             className="opacity-70 transition-colors hover:opacity-100"
                             aria-label="Instagram"
                         >

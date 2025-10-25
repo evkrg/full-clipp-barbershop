@@ -20,7 +20,7 @@ export default function VisitUsSection() {
                     </div>
                     <div className="space-y-4">
                         <InfoLine icon={MapPin}>
-                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </InfoLine>
@@ -47,7 +47,7 @@ export default function VisitUsSection() {
                             </a>
                         </InfoLine>
                         <InfoLine icon={Instagram}>
-                            <a href="https://instagram.com/fullclippbarbershop" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
+                            <a href="https://instagram.com/fullclippbarbershop" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 @fullclippbarbershop
                             </a>
                         </InfoLine>
