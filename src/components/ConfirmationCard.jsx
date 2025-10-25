@@ -5,12 +5,12 @@ import Button from "./Button";
 
 const DetailItem = ({ icon, label, children }) => (
   <div className="flex w-full items-start gap-4">
-    <div className="flex-shrink-0 text-fg/60">
+    <div className="flex-shrink-0 opacity-80">
       {React.createElement(icon, { className: "h-5 w-5", "aria-hidden": "true" })}
     </div>
     <div className="flex flex-col">
-      <dt className="text-sm font-medium text-fg/70">{label}</dt>
-      <dd className="mt-1 text-lg font-semibold text-fg">{children}</dd>
+      <dt className="text-sm font-medium opacity-80">{label}</dt>
+      <dd className="mt-1 text-lg font-semibold">{children}</dd>
     </div>
   </div>
 );
@@ -27,7 +27,7 @@ const formatBookingTime = (startISO, endISO) => {
   return (
     <>
       <span className="block">{datePart}</span>
-      <span className="block text-base font-medium text-fg/70">{timePart}</span>
+      <span className="block text-base font-medium opacity-80">{timePart}</span>
     </>
   );
 };
@@ -38,8 +38,8 @@ export default function ConfirmationCard({ data }) {
       <div className="flex flex-col items-center gap-4 border-[var(--cal-border)] border-b p-8 text-center">
         <CheckCircleIcon className="h-16 w-16 text-emerald-500" aria-hidden="true" />
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-fg whitespace-nowrap">Το ραντεβού έκλεισε!</h1>
-          <p className="text-fg/70">Ευχαριστούμε! Σε περιμένουμε.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight whitespace-nowrap">Το ραντεβού έκλεισε!</h1>
+          <p className="mt-1 opacity-80">Ευχαριστούμε! Σε περιμένουμε.</p>
         </div>
       </div>
 
@@ -54,7 +54,7 @@ export default function ConfirmationCard({ data }) {
       </div>
 
       <div className="border-[var(--cal-border)] border-t px-8 py-6 text-center">
-        <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noreferrer">
+        <Button href={`https://cal.com/booking/${data.uid}`} target="_blank" rel="noopener noreferrer">
           Διαχείριση ραντεβού
         </Button>
       </div>

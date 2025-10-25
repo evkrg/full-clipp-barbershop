@@ -22,13 +22,13 @@ export default function Hero() {
 
                     <div className="mt-10 border-t border-[var(--cal-border)] pt-6 grid gap-6 text-sm">
                         <address className="flex items-center gap-3 not-italic">
-                            <MapPin className="h-5 w-5 opacity-60" />
-                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
+                            <MapPin className="h-5 w-5 opacity-80" />
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </address>
                         <div className="flex items-start gap-3">
-                            <Clock className="mt-1 h-5 w-5 flex-shrink-0 opacity-60" />
+                            <Clock className="mt-1 h-5 w-5 flex-shrink-0 opacity-80" />
                             <ul className="grid gap-1.5">
                                 {workingHours.map((entry) => (
                                     <li
@@ -59,16 +59,18 @@ export default function Hero() {
                     </div>
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.1 }}>
-                    <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
-                        <img
-                            src="/logo/fullclip-logo.webp"
-                            alt="Full Clipp Barbershop logo"
-                            className="h-full w-full object-cover"
-                            fetchPriority="high"
-                        />
-                    </div>
-                </motion.div>
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:scale-[1.02] focus-within:scale-[1.02]">
+                    <img
+                        src="/logo/fullclip-logo.webp"
+                        alt="Full Clipp Barbershop logo"
+                        width={800}
+                        height={800}
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
+                        className="block h-full w-full object-cover"
+                    />
+                </div>
             </div>
         </section>
     );

@@ -14,8 +14,8 @@ export default function Footer() {
                         <a
                             href="https://instagram.com/fullclippbarbershop"
                             target="_blank"
-                            rel="noreferrer"
-                            className="opacity-70 transition-colors hover:opacity-100"
+                            rel="noopener noreferrer"
+                            className="opacity-80 transition-colors hover:opacity-100"
                             aria-label="Instagram"
                         >
                             <Instagram className="h-6 w-6" />
@@ -23,7 +23,7 @@ export default function Footer() {
                         <Button href="#booking" className="px-5 py-2 !rounded-md">Κλείσε ραντεβού</Button>
                     </div>
                 </div>
-                <div className="mt-8 border-[var(--cal-border)] border-t pt-6 text-center text-sm opacity-70">
+                <div className="mt-8 border-[var(--cal-border)] border-t pt-6 text-center text-sm opacity-80">
                     <p>&copy; {new Date().getFullYear()} Full Clipp Barbershop. All rights reserved.</p>
                 </div>
             </div>

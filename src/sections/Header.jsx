@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Icon, Menu, X } from "lucide-react";
 import { barberPole } from '@lucide/lab';
 import Button from "../components/Button";
@@ -9,105 +9,141 @@ const navLinks = [
     { href: "#visit-us", label: "Visit Us" },
 ];
 
+const SCROLL_THRESHOLD = 12;
+
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isNavHidden, setIsNavHidden] = useState(false);
+    const [navOffset, setNavOffset] = useState(0);
     const buttonRef = useRef(null);
     const menuRef = useRef(null);
+    const headerRef = useRef(null);
     const lastScrollY = useRef(0);
-    const scrollTicking = useRef(false);
+    const headerHeight = useRef(0);
+    const menuOpenScrollY = useRef(0);
+    const ticking = useRef(false);
 
-    useEffect(() => {
-        const threshold = 8;
-        lastScrollY.current = window.scrollY;
-
-        const updateVisibility = () => {
-            const scrollY = window.scrollY;
-
-            if (scrollY <= 0) {
-                lastScrollY.current = 0;
-                setIsNavHidden(false);
-                scrollTicking.current = false;
-                return;
-            }
-
-            const delta = scrollY - lastScrollY.current;
-
-            if (Math.abs(delta) < threshold) {
-                scrollTicking.current = false;
-                return;
-            }
-
-            const shouldHide = delta > 0;
-
-            setIsNavHidden((prev) => {
-                if (shouldHide && !prev) return true;
-                if (!shouldHide && prev) return false;
-                return prev;
-            });
-
-            lastScrollY.current = scrollY;
-            scrollTicking.current = false;
-        };
-
-        const handleScroll = () => {
-            if (scrollTicking.current) return;
-            scrollTicking.current = true;
-            window.requestAnimationFrame(updateVisibility);
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
+    const updateHeaderHeight = useCallback(() => {
+        const height = headerRef.current?.offsetHeight || 0;
+        headerHeight.current = height;
+        setNavOffset((prev) => Math.min(Math.max(prev, 0), height));
     }, []);
 
     useEffect(() => {
-        if (isMenuOpen) {
-            setIsNavHidden(false);
+        if (typeof window === "undefined") return;
+
+        updateHeaderHeight();
+
+        let observer;
+        if (typeof ResizeObserver === "function" && headerRef.current) {
+            observer = new ResizeObserver(updateHeaderHeight);
+            observer.observe(headerRef.current);
         }
-    }, [isMenuOpen]);
 
-    useEffect(() => {
-        if (!isMenuOpen) return;
-        const onKey = (e) => e.key === "Escape" && setIsMenuOpen(false);
-        document.addEventListener("keydown", onKey);
-        return () => document.removeEventListener("keydown", onKey);
-    }, [isMenuOpen]);
+        window.addEventListener("resize", updateHeaderHeight);
+        return () => {
+            window.removeEventListener("resize", updateHeaderHeight);
+            observer?.disconnect();
+        };
+    }, [updateHeaderHeight]);
 
-    useEffect(() => {
-        if (!isMenuOpen) return;
-        const onClick = (e) => {
-            if (!menuRef.current) return;
-            if (
-                !menuRef.current.contains(e.target) &&
-                !buttonRef.current?.contains(e.target)
-            ) {
+    const handleScroll = useCallback(() => {
+        if (typeof window === "undefined" || ticking.current) return;
+
+        ticking.current = true;
+        window.requestAnimationFrame(() => {
+            const currentY = window.scrollY;
+            const delta = currentY - lastScrollY.current;
+            lastScrollY.current = currentY < 0 ? 0 : currentY;
+
+            if (isMenuOpen && Math.abs(currentY - menuOpenScrollY.current) > SCROLL_THRESHOLD) {
                 setIsMenuOpen(false);
             }
-        };
-        document.addEventListener("mousedown", onClick);
-        document.addEventListener("touchstart", onClick);
-        return () => {
-            document.removeEventListener("mousedown", onClick);
-            document.removeEventListener("touchstart", onClick);
-        };
+
+            if (!isMenuOpen && currentY > 0) {
+                setNavOffset((prev) => {
+                    const height = headerHeight.current || headerRef.current?.offsetHeight || 0;
+                    if (!height) return prev;
+                    const next = prev + delta;
+                    return Math.min(Math.max(next, 0), height);
+                });
+            } else {
+                setNavOffset(0);
+            }
+
+            ticking.current = false;
+        });
+    }, [isMenuOpen]);
+
+    useEffect(() => {
+        if (typeof window === "undefined") return;
+
+        if (isMenuOpen) {
+            menuOpenScrollY.current = window.scrollY;
+        }
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [isMenuOpen, handleScroll]);
+
+    const handleOutsideClick = useCallback((e) => {
+        if (
+            isMenuOpen &&
+            menuRef.current &&
+            !menuRef.current.contains(e.target) &&
+            buttonRef.current &&
+            !buttonRef.current.contains(e.target)
+        ) {
+            setIsMenuOpen(false);
+            buttonRef.current?.focus();
+        }
     }, [isMenuOpen]);
 
     useEffect(() => {
         if (!isMenuOpen) return;
-        const onScroll = () => setIsMenuOpen(false);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+
+        document.addEventListener("mousedown", handleOutsideClick);
+        document.addEventListener("touchstart", handleOutsideClick);
+        return () => {
+            document.removeEventListener("mousedown", handleOutsideClick);
+            document.removeEventListener("touchstart", handleOutsideClick);
+        };
+    }, [isMenuOpen, handleOutsideClick]);
+
+    const handleKeyDown = useCallback((e) => {
+        if (isMenuOpen && e.key === "Escape") {
+            setIsMenuOpen(false);
+            buttonRef.current?.focus();
+        }
     }, [isMenuOpen]);
 
     useEffect(() => {
-        if (!isMenuOpen && buttonRef.current) {
-            buttonRef.current.focus();
-        }
-    }, [isMenuOpen]);
+        if (!isMenuOpen) return;
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [isMenuOpen, handleKeyDown]);
+
+    const toggleMenu = useCallback(() => {
+        setIsMenuOpen((prev) => {
+            const nextState = !prev;
+            if (nextState) {
+                setTimeout(() => menuRef.current?.querySelector("a")?.focus(), 0);
+            } else {
+                buttonRef.current?.focus();
+            }
+            return nextState;
+        });
+    }, []);
+
+    const closeMenu = useCallback(() => {
+        setIsMenuOpen(false);
+    }, []);
 
     return (
         <header
-            className={`fixed inset-x-0 top-0 z-50 border-[var(--cal-border)] border-b bg-[var(--cal-bg)] transition-transform ${isNavHidden ? "-translate-y-full" : "translate-y-0"}`}
+            ref={headerRef}
+            className="fixed inset-x-0 top-0 z-50 border-[var(--cal-border)] border-b bg-[var(--cal-bg)]"
+            style={{ transform: `translate3d(0, -${navOffset}px, 0)` }}
         >
             <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main">
                 <a href="#home" className="flex items-center gap-2 text-lg font-bold">
@@ -139,7 +175,8 @@ export default function Header() {
                         aria-label="Toggle menu"
                         aria-expanded={isMenuOpen}
                         aria-controls="mobile-menu"
-                        onClick={() => setIsMenuOpen((prev) => !prev)}
+                        aria-haspopup="true"
+                        onClick={toggleMenu}
                     >
                         {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                     </button>
@@ -149,6 +186,8 @@ export default function Header() {
                     <ul
                         id="mobile-menu"
                         ref={menuRef}
+                        role="dialog"
+                        aria-modal="true"
                         className="absolute inset-x-0 top-full grid gap-3 border-[var(--cal-border)] border-b bg-[var(--cal-bg)] p-4 text-sm sm:hidden"
                     >
                         {navLinks.map((link) => (
@@ -156,14 +195,14 @@ export default function Header() {
                                 <a
                                     href={link.href}
                                     className="block py-1 opacity-80 transition-opacity hover:opacity-100"
-                                    onClick={() => setIsMenuOpen(false)}
+                                    onClick={closeMenu}
                                 >
                                     {link.label}
                                 </a>
                             </li>
                         ))}
                         <li>
-                            <Button href="#booking" className="w-full text-center" onClick={() => setIsMenuOpen(false)}>
+                            <Button href="#booking" className="w-full text-center" onClick={closeMenu}>
                                 Κλείσε ραντεβού
                             </Button>
                         </li>

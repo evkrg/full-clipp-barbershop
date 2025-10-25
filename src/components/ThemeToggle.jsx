@@ -26,7 +26,7 @@ export default function ThemeToggle({ className = "", label = "Toggle theme" }) 
         <button
             type="button"
             onClick={() => setTheme(isDark ? "light" : "dark")}
-            className={`cursor-pointer opacity-70 transition-opacity hover:opacity-100 ${className}`}
+            className={`cursor-pointer ${className}`}
             aria-label={label}
             aria-pressed={isDark}
             title={label}

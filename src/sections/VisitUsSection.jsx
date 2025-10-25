@@ -4,7 +4,7 @@ import { workingHours } from '../data.jsx';
 
 const InfoLine = ({ icon: Icon, children }) => (
     <div className="flex items-start gap-3 text-sm">
-        <Icon className="h-5 w-5 flex-shrink-0 opacity-60" />
+        <Icon className="h-5 w-5 flex-shrink-0 opacity-80" />
         <div className="leading-relaxed">{children}</div>
     </div>
 );
@@ -20,7 +20,7 @@ export default function VisitUsSection() {
                     </div>
                     <div className="space-y-4">
                         <InfoLine icon={MapPin}>
-                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
+                            <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 Ιωάννου Δροσοπούλου 6, 11257 Κυψέλη, Αθήνα
                             </a>
                         </InfoLine>
@@ -47,7 +47,7 @@ export default function VisitUsSection() {
                             </a>
                         </InfoLine>
                         <InfoLine icon={Instagram}>
-                            <a href="https://instagram.com/fullclippbarbershop" target="_blank" rel="noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
+                            <a href="https://instagram.com/fullclippbarbershop" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
                                 @fullclippbarbershop
                             </a>
                         </InfoLine>
@@ -59,7 +59,7 @@ export default function VisitUsSection() {
                     <ul className="mt-5 grid gap-4 text-base">
                         <li className="flex items-start gap-3 opacity-80">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                            <span>Κουρέματα με ακρίβεια και στυλ, από έμπειρους barbers.</span>
+                            <span>Κουρέματα με ακρίβεια και στυλ, από έμπειρο barber.</span>
                         </li>
                         <li className="flex items-start gap-3 opacity-80">
                             <CheckCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
