@@ -1,17 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle({ className = "", label = "Toggle theme" }) {
     const { theme, resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const effectiveTheme = useMemo(() => {
-        if (!mounted) return "light";
         if (resolvedTheme === "dark" || resolvedTheme === "light") {
             return resolvedTheme;
         }
@@ -19,7 +13,7 @@ export default function ThemeToggle({ className = "", label = "Toggle theme" }) 
             return theme;
         }
         return "light";
-    }, [mounted, resolvedTheme, theme]);
+    }, [resolvedTheme, theme]);
     const isDark = effectiveTheme === "dark";
 
     return (

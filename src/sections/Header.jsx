@@ -31,7 +31,7 @@ export default function Header() {
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        updateHeaderHeight();
+        const rafId = window.requestAnimationFrame(updateHeaderHeight);
 
         let observer;
         if (typeof ResizeObserver === "function" && headerRef.current) {
@@ -41,6 +41,7 @@ export default function Header() {
 
         window.addEventListener("resize", updateHeaderHeight);
         return () => {
+            window.cancelAnimationFrame(rafId);
             window.removeEventListener("resize", updateHeaderHeight);
             observer?.disconnect();
         };

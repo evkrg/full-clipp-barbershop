@@ -11,7 +11,7 @@ const InfoLine = ({ icon: Icon, children }) => (
 
 export default function VisitUsSection() {
     return (
-        <section id="visit-us" className="bg-[var(--cal-bg)] border-[var(--cal-border)] border-t">
+        <section id="visit-us" className="border-[var(--cal-border)] border-t">
             <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 grid md:grid-cols-2 gap-12 items-start">
                 <div className="space-y-8">
                     <div>

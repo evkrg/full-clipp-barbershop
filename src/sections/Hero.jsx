@@ -5,7 +5,7 @@ import { workingHours } from "../data.jsx";
 
 export default function Hero() {
     return (
-        <section id="home" className="bg-[var(--cal-bg)]">
+        <section id="home">
             <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:px-8 lg:py-28 md:grid-cols-2">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter">

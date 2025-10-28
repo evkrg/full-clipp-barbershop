@@ -22,28 +22,38 @@ export default function TshirtCard({ shirt }) {
     return (
         <div className="relative">
             <div
-                className={`relative w-full overflow-hidden rounded-xl border border-[var(--cal-border)] bg-[var(--cal-surface)] ${hasBack ? "cursor-pointer select-none" : ""
-                    }`}
+                className={`relative w-full overflow-hidden rounded-xl border border-[var(--cal-border)] bg-[var(--cal-surface)] ${hasBack ? "cursor-pointer select-none" : ""}`}
                 style={{ aspectRatio }}
                 onClick={() => hasBack && setShowBack((s) => !s)}
             >
                 <img
-                    src={showBack && hasBack ? shirt.imageUrlBack : shirt.imageUrlFront}
-                    alt={`${shirt.title} (${showBack && hasBack ? "back" : "front"})`}
+                    src={shirt.imageUrlFront}
+                    alt={`${shirt.title} (front)`}
                     width={width}
                     height={height}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover object-center transition-all duration-300 ease-in-out"
+                    className={`h-full w-full object-cover object-center transition-opacity duration-300 ease-in-out ${showBack && hasBack ? "opacity-0" : "opacity-100"}`}
                 />
+                {hasBack && (
+                    <img
+                        src={shirt.imageUrlBack}
+                        alt={`${shirt.title} (back)`}
+                        width={width}
+                        height={height}
+                        loading="lazy"
+                        decoding="async"
+                        className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-300 ease-in-out ${showBack ? "opacity-100" : "opacity-0"}`}
+                    />
+                )}
             </div>
 
             <div className="mt-4 flex justify-between gap-3">
                 <div>
                     <h3 className="text-base font-semibold">{shirt.title}</h3>
-                    <p className="mt-1 text-sm opacity-80">{shirt.desc}</p>
+                    <p className="mt-1 text-sm leading-5 opacity-80">{shirt.desc}</p>
                 </div>
-                <p className="text-base font-medium border border-[var(--cal-border)] bg-[var(--cal-surface)] text-fg rounded-md px-3 py-1 h-fit">
+                <p className="text-base font-medium whitespace-nowrap border border-[var(--cal-border)] bg-[var(--cal-surface)] text-fg rounded-md px-3 py-1 h-fit">
                     {priceLabel}
                 </p>
             </div>
