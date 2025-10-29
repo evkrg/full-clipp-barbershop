@@ -6,7 +6,7 @@ import ThemeToggle from "../components/ThemeToggle";
 
 const navLinks = [
     { href: "#tshirts", label: "T-shirts" },
-    { href: "#visit-us", label: "Visit Us" },
+    { href: "#visit-us", label: "Visit Us" }
 ];
 
 const SCROLL_THRESHOLD = 12;
@@ -54,23 +54,25 @@ export default function Header() {
         window.requestAnimationFrame(() => {
             const currentY = window.scrollY;
             const delta = currentY - lastScrollY.current;
-            lastScrollY.current = currentY < 0 ? 0 : currentY;
+            const height = headerHeight.current;
 
             if (isMenuOpen && Math.abs(currentY - menuOpenScrollY.current) > SCROLL_THRESHOLD) {
                 setIsMenuOpen(false);
             }
 
-            if (!isMenuOpen && currentY > 0) {
-                setNavOffset((prev) => {
-                    const height = headerHeight.current || headerRef.current?.offsetHeight || 0;
-                    if (!height) return prev;
-                    const next = prev + delta;
-                    return Math.min(Math.max(next, 0), height);
-                });
-            } else {
-                setNavOffset(0);
+            if (!isMenuOpen) {
+                if (currentY <= height) {
+                    setNavOffset(0);
+                }
+                else if (delta > SCROLL_THRESHOLD) {
+                    setNavOffset(height);
+                }
+                else if (delta < -SCROLL_THRESHOLD) {
+                    setNavOffset(0);
+                }
             }
 
+            lastScrollY.current = currentY < 0 ? 0 : currentY;
             ticking.current = false;
         });
     }, [isMenuOpen]);
@@ -143,7 +145,7 @@ export default function Header() {
     return (
         <header
             ref={headerRef}
-            className="fixed inset-x-0 top-0 z-50 border-[var(--cal-border)] border-b bg-[var(--cal-bg)]"
+            className="fixed inset-x-0 top-0 z-50 border-[var(--cal-border)] border-b bg-[var(--cal-bg)] transition-transform duration-300 ease-out"
             style={{ transform: `translate3d(0, -${navOffset}px, 0)` }}
         >
             <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main">
