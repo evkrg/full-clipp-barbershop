@@ -6,7 +6,7 @@ import { workingHours } from "../data.jsx";
 export default function Hero() {
     return (
         <section id="home">
-            <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 sm:px-6 lg:px-8 lg:py-28 md:grid-cols-2">
+            <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-6 sm:px-6 lg:px-8 md:grid-cols-2">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter">
                         Classic cuts. Modern style.
@@ -20,7 +20,7 @@ export default function Hero() {
                         <Button href="#tshirts" variant="secondary">Δες τα T-shirts</Button>
                     </div>
 
-                    <div className="mt-10 border-t border-[var(--cal-border)] pt-6 grid gap-6 text-sm">
+                    <div className="mt-10 border-t pt-6 grid gap-6 text-sm">
                         <address className="flex items-center gap-3 not-italic">
                             <MapPin className="h-5 w-5 opacity-80" />
                             <a href="https://maps.google.com/?cid=4870176769112496623&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNl" target="_blank" rel="noopener noreferrer" className="opacity-80 transition-opacity hover:opacity-100 underline underline-offset-4">
@@ -38,7 +38,7 @@ export default function Hero() {
                                         <span className="leading-tight opacity-80">
                                             {entry.dayLabel}
                                         </span>
-                                        <span className="inline-flex items-center rounded-full border border-[var(--cal-border)] px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide opacity-80 tabular-nums">
+                                        <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide opacity-80 tabular-nums">
                                             {entry.hours}
                                         </span>
                                     </li>
