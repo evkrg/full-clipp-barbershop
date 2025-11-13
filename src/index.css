@@ -20,6 +20,12 @@
         --btn-primary-fg: rgb(0 0 0);
         --btn-secondary-bg: rgb(23 23 23);
     }
+
+    *,
+    ::before,
+    ::after {
+        border-color: var(--cal-border);
+    }
 }
 
 html,

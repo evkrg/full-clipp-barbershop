@@ -22,7 +22,7 @@ export default function TshirtCard({ shirt }) {
     return (
         <div className="relative">
             <div
-                className={`relative w-full overflow-hidden rounded-xl border border-[var(--cal-border)] bg-[var(--cal-surface)] ${hasBack ? "cursor-pointer select-none" : ""}`}
+                className={`relative w-full overflow-hidden rounded-xl border bg-[var(--cal-surface)] ${hasBack ? "cursor-pointer select-none" : ""}`}
                 style={{ aspectRatio }}
                 onClick={() => hasBack && setShowBack((s) => !s)}
             >
@@ -53,7 +53,7 @@ export default function TshirtCard({ shirt }) {
                     <h3 className="text-base font-semibold">{shirt.title}</h3>
                     <p className="mt-1 text-sm leading-5 opacity-80">{shirt.desc}</p>
                 </div>
-                <p className="text-base font-medium whitespace-nowrap border border-[var(--cal-border)] bg-[var(--cal-surface)] text-fg rounded-md px-3 py-1 h-fit">
+                <p className="text-base font-medium whitespace-nowrap border bg-[var(--cal-surface)] text-fg rounded-md px-3 py-1 h-fit">
                     {priceLabel}
                 </p>
             </div>

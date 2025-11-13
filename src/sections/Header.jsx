@@ -9,84 +9,10 @@ const navLinks = [
     { href: "#visit-us", label: "Visit Us" }
 ];
 
-const SCROLL_THRESHOLD = 12;
-
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [navOffset, setNavOffset] = useState(0);
     const buttonRef = useRef(null);
     const menuRef = useRef(null);
-    const headerRef = useRef(null);
-    const lastScrollY = useRef(0);
-    const headerHeight = useRef(0);
-    const menuOpenScrollY = useRef(0);
-    const ticking = useRef(false);
-
-    const updateHeaderHeight = useCallback(() => {
-        const height = headerRef.current?.offsetHeight || 0;
-        headerHeight.current = height;
-        setNavOffset((prev) => Math.min(Math.max(prev, 0), height));
-    }, []);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-
-        const rafId = window.requestAnimationFrame(updateHeaderHeight);
-
-        let observer;
-        if (typeof ResizeObserver === "function" && headerRef.current) {
-            observer = new ResizeObserver(updateHeaderHeight);
-            observer.observe(headerRef.current);
-        }
-
-        window.addEventListener("resize", updateHeaderHeight);
-        return () => {
-            window.cancelAnimationFrame(rafId);
-            window.removeEventListener("resize", updateHeaderHeight);
-            observer?.disconnect();
-        };
-    }, [updateHeaderHeight]);
-
-    const handleScroll = useCallback(() => {
-        if (typeof window === "undefined" || ticking.current) return;
-
-        ticking.current = true;
-        window.requestAnimationFrame(() => {
-            const currentY = window.scrollY;
-            const delta = currentY - lastScrollY.current;
-            const height = headerHeight.current;
-
-            if (isMenuOpen && Math.abs(currentY - menuOpenScrollY.current) > SCROLL_THRESHOLD) {
-                setIsMenuOpen(false);
-            }
-
-            if (!isMenuOpen) {
-                if (currentY <= height) {
-                    setNavOffset(0);
-                }
-                else if (delta > SCROLL_THRESHOLD) {
-                    setNavOffset(height);
-                }
-                else if (delta < -SCROLL_THRESHOLD) {
-                    setNavOffset(0);
-                }
-            }
-
-            lastScrollY.current = currentY < 0 ? 0 : currentY;
-            ticking.current = false;
-        });
-    }, [isMenuOpen]);
-
-    useEffect(() => {
-        if (typeof window === "undefined") return;
-
-        if (isMenuOpen) {
-            menuOpenScrollY.current = window.scrollY;
-        }
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [isMenuOpen, handleScroll]);
 
     const handleOutsideClick = useCallback((e) => {
         if (
@@ -144,9 +70,7 @@ export default function Header() {
 
     return (
         <header
-            ref={headerRef}
-            className="fixed inset-x-0 top-0 z-50 border-[var(--cal-border)] border-b bg-[var(--cal-bg)] transition-transform duration-300 ease-out"
-            style={{ transform: `translate3d(0, -${navOffset}px, 0)` }}
+            className="border-[var(--cal-border)] border-b bg-[var(--cal-bg)]"
         >
             <nav className="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Main">
                 <a href="#home" className="flex items-center gap-2 text-lg font-bold">
@@ -191,7 +115,7 @@ export default function Header() {
                         ref={menuRef}
                         role="dialog"
                         aria-modal="true"
-                        className="absolute inset-x-0 top-full grid gap-3 border-[var(--cal-border)] border-b bg-[var(--cal-bg)] p-4 text-sm sm:hidden"
+                        className="absolute inset-x-0 top-full z-50 grid gap-3 border-b bg-[var(--cal-bg)] p-4 text-sm sm:hidden"
                     >
                         {navLinks.map((link) => (
                             <li key={link.href}>

@@ -3,7 +3,7 @@ export default function Button({ as: Component = "a", variant = "primary", class
 
     const variants = {
         primary: "bg-[var(--btn-primary-bg)] text-[var(--btn-primary-fg)]",
-        secondary: "bg-[var(--btn-secondary-bg)] text-fg border border-[var(--cal-border)] hover:bg-[var(--cal-surface)]",
+        secondary: "bg-[var(--btn-secondary-bg)] text-fg border hover:bg-[var(--cal-surface)]",
     };
 
     const combinedClasses = `${baseClasses} ${variants[variant]} ${className}`.trim();

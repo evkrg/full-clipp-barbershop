@@ -12,7 +12,7 @@ const InfoLine = ({ icon: Icon, children }) => (
 export default function VisitUsSection() {
     return (
         <section id="visit-us" className="border-[var(--cal-border)] border-t">
-            <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8 grid md:grid-cols-2 gap-12 items-start">
+            <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-start">
                 <div className="space-y-8">
                     <div>
                         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Come Visit Us</h2>
@@ -34,7 +34,7 @@ export default function VisitUsSection() {
                                         <span className="leading-tight opacity-80">
                                             {entry.dayLabel}
                                         </span>
-                                        <span className="inline-flex items-center rounded-full border-[var(--cal-border)] border px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide opacity-80 tabular-nums">
+                                        <span className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide opacity-80 tabular-nums">
                                             {entry.hours}
                                         </span>
                                     </li>
@@ -54,7 +54,7 @@ export default function VisitUsSection() {
                     </div>
                 </div>
 
-                <div className="relative overflow-hidden rounded-xl border-[var(--cal-border)] border p-8 shadow-sm">
+                <div className="relative overflow-hidden rounded-xl border p-8 shadow-sm">
                     <h3 className="text-lg font-semibold">Γιατί Full Clipp;</h3>
                     <ul className="mt-5 grid gap-4 text-base">
                         <li className="flex items-start gap-3 opacity-80">

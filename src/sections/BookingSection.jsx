@@ -12,7 +12,7 @@ export default function BookingSection({ isBooked, bookingData }) {
     const [selectedBarber, setSelectedBarber] = useState(barbers[0]);
 
     return (
-        <section id="booking" className="py-20 sm:py-28">
+        <section id="booking" className="py-12">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
                 <div className="max-w-2xl mx-auto text-center">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Book Your Cut</h2>
@@ -38,8 +38,8 @@ export default function BookingSection({ isBooked, bookingData }) {
                     </div>
                 </div>
 
-                <div className="mt-10 rounded-2xl border-[var(--cal-border)] border bg-surface shadow-md">
-                    <div className="px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+                <div className="mt-10 rounded-2xl border bg-surface shadow-md">
+                    <div className="px-4 py-6 sm:px-6 lg:px-8">
                         {isBooked ? (
                             <ConfirmationCard data={bookingData} />
                         ) : (

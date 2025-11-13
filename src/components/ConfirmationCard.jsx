@@ -35,7 +35,7 @@ const formatBookingTime = (startISO, endISO) => {
 export default function ConfirmationCard({ data }) {
   return (
     <div className="w-full overflow-hidden">
-      <div className="flex flex-col items-center gap-4 border-[var(--cal-border)] border-b p-8 text-center">
+      <div className="flex flex-col items-center gap-4 border-b p-8 text-center">
         <CheckCircleIcon className="h-16 w-16 text-emerald-500" aria-hidden="true" />
         <div className="space-y-1">
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight whitespace-nowrap">Το ραντεβού έκλεισε!</h1>
