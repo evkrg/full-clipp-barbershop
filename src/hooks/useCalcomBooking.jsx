@@ -1,35 +1,66 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getCalApi } from "@calcom/embed-react";
+
+const LAST_BOOKING_KEY = "lastBookingUid";
 
 export function useCalcomBooking() {
     const [isBooked, setIsBooked] = useState(false);
     const [bookingData, setBookingData] = useState(null);
+    const [lastBookingUid, setLastBookingUid] = useState(() => {
+        if (typeof window === "undefined") return null;
+        try {
+            return window.sessionStorage.getItem(LAST_BOOKING_KEY);
+        } catch {
+            return null;
+        }
+    });
     const firedRef = useRef(false); // prevents duplicate handling
+    const registeredRef = useRef(false);
 
     useEffect(() => {
+        let isActive = true;
         let cleanup = () => { };
         let calRef = null;
 
-        (async () => {
-            calRef = await getCalApi();
+        const onBooked = (e) => {
+            if (!isActive || firedRef.current) return;
+            firedRef.current = true;
 
-            const onBooked = (e) => {
-                if (firedRef.current) return;
-                firedRef.current = true;
+            const raw = e?.detail?.data || {};
+            const data = extractBookingFields(raw);
+            setIsBooked(true);
+            setBookingData(data);
 
-                const raw = e?.detail?.data || {};
-                const data = extractBookingFields(raw);
-                setIsBooked(true);
-                setBookingData(data);
-            };
-
-            const register = () => {
+            if (data?.uid && typeof window !== "undefined") {
+                setLastBookingUid(data.uid);
                 try {
-                    calRef("on", { action: "bookingSuccessful", callback: onBooked });
-                } catch (err) {
-                    console.error("[cal] failed to register bookingSuccessful:", err);
+                    window.sessionStorage.setItem(LAST_BOOKING_KEY, data.uid);
+                } catch {
+                    // Ignore storage errors
                 }
-            };
+            }
+        };
+
+        const register = () => {
+            if (!isActive || registeredRef.current || !calRef) return;
+            registeredRef.current = true;
+
+            try {
+                calRef("on", { action: "bookingSuccessful", callback: onBooked });
+            } catch (err) {
+                console.error("[cal] failed to register bookingSuccessful:", err);
+            }
+        };
+
+        (async () => {
+            try {
+                calRef = await getCalApi();
+            } catch (err) {
+                console.error("[cal] failed to load API:", err);
+                return;
+            }
+
+            if (!isActive) return;
 
             try {
                 calRef("on", { action: "linkReady", callback: register });
@@ -49,10 +80,19 @@ export function useCalcomBooking() {
             };
         })();
 
-        return () => cleanup();
+        return () => {
+            isActive = false;
+            cleanup();
+        };
     }, []);
 
-    return { isBooked, bookingData };
+    const resetBooking = useCallback(() => {
+        firedRef.current = false;
+        setIsBooked(false);
+        setBookingData(null);
+    }, []);
+
+    return { isBooked, bookingData, lastBookingUid, resetBooking };
 }
 
 function extractBookingFields(raw) {

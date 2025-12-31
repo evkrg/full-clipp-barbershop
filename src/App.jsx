@@ -7,14 +7,19 @@ import VisitUsSection from "./sections/VisitUsSection";
 import Footer from "./sections/Footer";
 
 export default function BarbershopPage() {
-  const { isBooked, bookingData } = useCalcomBooking();
+  const { isBooked, bookingData, lastBookingUid, resetBooking } = useCalcomBooking();
 
   return (
     <div className="font-sans antialiased">
       <Header />
       <main>
         <Hero />
-        <BookingSection isBooked={isBooked} bookingData={bookingData} />
+        <BookingSection
+          isBooked={isBooked}
+          bookingData={bookingData}
+          lastBookingUid={lastBookingUid}
+          onResetBooking={resetBooking}
+        />
         <TshirtsSection />
         <VisitUsSection />
       </main>
